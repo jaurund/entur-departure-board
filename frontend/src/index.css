@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 215 20% 15%;
+
+    --card: 0 0% 98%;
+    --card-foreground: 215 20% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 20% 15%;
+
+    --primary: 215 33% 35%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 25% 68%;
+    --secondary-foreground: 215 33% 15%;
+
+    --muted: 210 30% 92%;
+    --muted-foreground: 215 15% 45%;
+
+    --accent: 199 24% 58%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 85%;
+    --input: 210 20% 90%;
+    --ring: 215 33% 35%;
+
+    --radius: 0.5rem;
+
+    /* Transit board specific colors */
+    --board-bg: 0 0% 98%;
+    --board-header: 215 33% 35%;
+    --line-badge: 340 82% 75%;
+    --line-badge-text: 215 33% 15%;
+    --delay-text: 0 72% 51%;
+    --on-time-text: 142 70% 45%;
+    
+    /* Bike station colors - Bergen Bysykkel #008A34 */
+    --bike-primary: 142 100% 27%;
+    --bike-bg: 0 0% 98%;
+    --bike-text: 142 100% 27%;
+    --bike-available: 142 71% 45%;
+    
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 215 20% 20%;
+    --sidebar-primary: 215 33% 35%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 210 30% 92%;
+    --sidebar-accent-foreground: 215 33% 15%;
+    --sidebar-border: 210 20% 85%;
+    --sidebar-ring: 215 33% 35%;
+  }
+
+  .dark {
+    --background: 0 0% 7%;
+    --foreground: 0 0% 95%;
+
+    --card: 215 25% 10%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 215 25% 10%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 215 33% 35%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 215 25% 18%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 215 25% 15%;
+    --muted-foreground: 210 15% 60%;
+
+    --accent: 199 24% 58%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 215 25% 18%;
+    --input: 215 25% 18%;
+    --ring: 210 25% 68%;
+
+    /* Transit board specific colors - dark mode */
+    --board-bg: 0 0% 7%;
+    --board-header: 0 0% 12%;
+    --line-badge: 340 82% 75%;
+    --line-badge-text: 215 33% 15%;
+    --delay-text: 0 84% 60%;
+    --on-time-text: 142 70% 55%;
+    
+    /* Bike station colors - Bergen Bysykkel dark mode */
+    --bike-primary: 142 100% 35%;
+    --bike-bg: 215 25% 10%;
+    --bike-text: 142 100% 35%;
+    --bike-available: 142 71% 55%;
+    
+    --sidebar-background: 215 25% 8%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 210 25% 68%;
+    --sidebar-primary-foreground: 0 0% 10%;
+    --sidebar-accent: 215 25% 15%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 215 25% 15%;
+    --sidebar-ring: 210 25% 68%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}

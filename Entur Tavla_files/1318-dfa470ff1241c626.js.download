@@ -1,0 +1,337 @@
+!function(){try{var e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:{},t=(new e.Error).stack;t&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[t]="79560978-896f-4e87-aa85-3b80d716e1c4",e._sentryDebugIdIdentifier="sentry-dbid-79560978-896f-4e87-aa85-3b80d716e1c4")}catch(e){}}();"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[1318],{637:(e,t,i)=>{i.d(t,{A:()=>n});let n={src:"/_next/static/media/Tavla-white.e272572a.svg",height:20,width:117,blurWidth:0,blurHeight:0}},7383:(e,t,i)=>{i.d(t,{x:()=>l});var n=i(38494);function l(e){var t=n.useContext(e);if(!t)throw Error("Context value was null or undefined, and may have been used outside its provider.");return t}},15856:(e,t,i)=>{i.d(t,{Gu:()=>s,Uw:()=>r,Zs:()=>l,b_:()=>a,mS:()=>o});class n extends String{toString(){return this.value}constructor(e,t){super(e),this.value=e,this.__meta__=t}}new n(`fragment situation on PtSituationElement {
+  id
+  description {
+    value
+    language
+  }
+  summary {
+    value
+    language
+  }
+}`,{fragmentName:"situation"}),new n(`fragment departure on EstimatedCall {
+  quay {
+    publicCode
+    name
+  }
+  destinationDisplay {
+    frontText
+    via
+  }
+  aimedDepartureTime
+  expectedDepartureTime
+  expectedArrivalTime
+  serviceJourney {
+    id
+    transportMode
+    transportSubmode
+    line {
+      id
+      publicCode
+      presentation {
+        textColour
+        colour
+      }
+    }
+  }
+  cancellation
+  realtime
+  situations {
+    ...situation
+  }
+}
+
+fragment situation on PtSituationElement {
+  id
+  description {
+    value
+    language
+  }
+  summary {
+    value
+    language
+  }
+}`,{fragmentName:"departure"}),new n(`
+    fragment lines on Quay {
+  lines {
+    id
+    publicCode
+    name
+    transportMode
+  }
+}`,{fragmentName:"lines"});var l=new n(`
+query getQuay($quayId: String!, $whitelistedTransportModes: [TransportMode], $whitelistedLines: [ID!], $numberOfDepartures: Int = 20, $startTime: DateTime) {
+  quay(
+    id: $quayId
+  ) {
+    name
+    description
+    publicCode
+    ...lines
+    estimatedCalls(
+      numberOfDepartures: $numberOfDepartures,
+      whiteListedModes: $whitelistedTransportModes,
+      whiteListed: {
+        lines: $whitelistedLines
+      },
+      includeCancelledTrips: true,
+      startTime: $startTime
+    ) {
+      ...departure
+    }
+    situations {
+      ...situation
+    }
+    stopPlace {
+      situations {
+        ...situation
+      }
+    }
+  }
+}
+
+fragment departure on EstimatedCall {
+  quay {
+    publicCode
+    name
+  }
+  destinationDisplay {
+    frontText
+    via
+  }
+  aimedDepartureTime
+  expectedDepartureTime
+  expectedArrivalTime
+  serviceJourney {
+    id
+    transportMode
+    transportSubmode
+    line {
+      id
+      publicCode
+      presentation {
+        textColour
+        colour
+      }
+    }
+  }
+  cancellation
+  realtime
+  situations {
+    ...situation
+  }
+}
+
+fragment lines on Quay {
+  lines {
+    id
+    publicCode
+    name
+    transportMode
+  }
+}
+
+fragment situation on PtSituationElement {
+  id
+  description {
+    value
+    language
+  }
+  summary {
+    value
+    language
+  }
+}`);new n(`
+query quayCoordinates($id: String!) {
+  quay(
+    id: $id
+  ) {
+    id
+    longitude
+    latitude
+  }
+}`);var a=new n(`
+query quayEdit($placeId: String!) {
+  quay(
+    id: $placeId
+  ) {
+    ...lines
+  }
+}
+
+fragment lines on Quay {
+  lines {
+    id
+    publicCode
+    name
+    transportMode
+  }
+}`);new n(`
+query QuayName($id: String!) {
+  quay(
+    id: $id
+  ) {
+    name
+    description
+    publicCode
+    id
+  }
+}`);var r=new n(`
+query quaysSearch($stopPlaceId: String!) {
+  stopPlace(
+    id: $stopPlaceId
+  ) {
+    quays(
+      filterByInUse: true
+    ) {
+      id
+      publicCode
+      description
+      stopPlace {
+        transportMode
+      }
+      ...lines
+    }
+  }
+}
+
+fragment lines on Quay {
+  lines {
+    id
+    publicCode
+    name
+    transportMode
+  }
+}`),s=new n(`
+query StopPlace($stopPlaceId: String!, $whitelistedTransportModes: [TransportMode], $whitelistedLines: [ID!], $numberOfDepartures: Int = 20, $startTime: DateTime) {
+  stopPlace(
+    id: $stopPlaceId
+  ) {
+    name
+    transportMode
+    estimatedCalls(
+      numberOfDepartures: $numberOfDepartures,
+      whiteListedModes: $whitelistedTransportModes,
+      whiteListed: {
+        lines: $whitelistedLines
+      },
+      includeCancelledTrips: true,
+      startTime: $startTime
+    ) {
+      ...departure
+    }
+    situations {
+      ...situation
+    }
+  }
+}
+
+fragment departure on EstimatedCall {
+  quay {
+    publicCode
+    name
+  }
+  destinationDisplay {
+    frontText
+    via
+  }
+  aimedDepartureTime
+  expectedDepartureTime
+  expectedArrivalTime
+  serviceJourney {
+    id
+    transportMode
+    transportSubmode
+    line {
+      id
+      publicCode
+      presentation {
+        textColour
+        colour
+      }
+    }
+  }
+  cancellation
+  realtime
+  situations {
+    ...situation
+  }
+}
+
+fragment situation on PtSituationElement {
+  id
+  description {
+    value
+    language
+  }
+  summary {
+    value
+    language
+  }
+}`);new n(`
+query stopPlaceCoordinates($id: String!) {
+  stopPlace(
+    id: $id
+  ) {
+    id
+    longitude
+    latitude
+  }
+}`);var o=new n(`
+query stopPlaceEdit($placeId: String!) {
+  stopPlace(
+    id: $placeId
+  ) {
+    name
+    quays(
+      filterByInUse: true
+    ) {
+      ...lines
+    }
+  }
+}
+
+fragment lines on Quay {
+  lines {
+    id
+    publicCode
+    name
+    transportMode
+  }
+}`);new n(`
+query StopPlaceName($id: String!) {
+  stopPlace(
+    id: $id
+  ) {
+    name
+    id
+  }
+}`),new n(`
+query walkDistance($from: InputCoordinates!, $to: InputCoordinates!) {
+  trip(
+    from: {
+      coordinates: $from
+    },
+    to: {
+      coordinates: $to
+    },
+    modes: {
+      directMode: foot
+      transportModes: []
+    }
+  ) {
+    tripPatterns {
+      duration
+      streetDistance
+      legs {
+        expectedStartTime
+        expectedEndTime
+        mode
+        distance
+        line {
+          id
+          publicCode
+        }
+      }
+    }
+  }
+}`)},18761:(e,t,i)=>{i.d(t,{G:()=>m});var n=i(61975),l=i(71983),a=i(45849),r=i(22043),s=i(71450),o=i(27122);i(86977);var u=i(80291),d=i(72930),c=i(37805);function m(e){return(0,n._)(function(e){var t,i,m,p,v,f,h;return(0,s.YH)(this,function(x){return i=(t=(0,r._)(e,4))[0],m=t[1],p=t[2],v=t[3],f=(0,c.mM)((0,c.WO)(new Date,v)),h=(0,a._)((0,l._)({},m),{startTime:f}),[2,(function(e,t){var i=arguments.length>2&&void 0!==arguments[2]?arguments[2]:15e3;return(0,n._)(function(){var n,r,u,c,m;return(0,s.YH)(this,function(s){switch(s.label){case 0:r=(n=new AbortController).signal,u=setTimeout(()=>n.abort(),i),s.label=1;case 1:return s.trys.push([1,3,,4]),[4,fetch(e,(0,a._)((0,l._)({},t),{signal:r}))];case 2:return c=s.sent(),clearTimeout(u),[2,c];case 3:if(m=s.sent(),clearTimeout(u),r.aborted)throw o.Cp(Error("Departure fetch timed out"),{extra:{url:e,fetchOptions:t}}),Error(d.I.TIMEOUT);throw o.Cp(m,{extra:{message:"Unknown error occured during fetch",url:e,fetchOptions:t}}),m;case 4:return[2]}})})()})(u.Jb[p],{headers:{"Content-Type":"application/json","ET-Client-Name":u.eU},body:JSON.stringify({query:i,variables:h}),method:"POST"}).then(e=>e.json()).then(e=>e.data)]})}).apply(this,arguments)}},29218:(e,t,i)=>{i.d(t,{Y:()=>d});var n=i(91246),l=i(73020),a=i(637),r=i(22043),s=i(38494);function o(){var e=(0,r._)((0,s.useState)(),2),t=e[0],i=e[1];return(0,s.useEffect)(()=>{var e=()=>{var e=new Date;return new Intl.DateTimeFormat("en-GB",{hour:"2-digit",minute:"2-digit",hour12:!1,timeZone:"Europe/Oslo"}).format(e)};i(e());var t=setInterval(()=>i(e()),1e3);return()=>clearInterval(t)},[]),(0,n.jsx)("span",{className:"text-[1.5625em] text-primary",children:t})}var u=i(15239);function d(e){var t=e.theme,i=e.folderLogo,r=e.hideClock,s=void 0!==r&&r,d=e.hideLogo,c=void 0!==d&&d,m="light"===t?l.A:a.A;return s&&c?null:(0,n.jsxs)("div",{className:"mb-em-0.25 flex flex-row items-center justify-between gap-em-3",children:[(0,n.jsx)("div",{className:"relative h-[1.25em] w-full",children:!c&&(0,n.jsx)(u.default,{src:null!=i?i:m,alt:"Logo til tavlen",className:"h-full w-auto object-contain object-left",width:"100",height:"100"})}),!s&&(0,n.jsx)(o,{})]})}},35925:(e,t,i)=>{i.d(t,{c:()=>o});var n=i(91246),l=i(73020),a=i(637),r=i(47941),s=i(15239);function o(e){var t,i,o,u,d=e.board,c=e.showEnturLogo;if(!c&&!(null==(t=d.footer)?void 0:t.footer))return null;var m="light"===(null!=(u=null==d?void 0:d.theme)?u:"dark")?l.A:a.A;return(0,n.jsxs)("footer",{className:"flex flex-row items-center justify-between gap-em-2",children:[(0,n.jsx)("div",{className:`truncate leading-em-base text-primary ${(0,r.MD)(null==(i=d.meta)?void 0:i.fontSize)||(0,r.uD)(d)}`,children:null==(o=d.footer)?void 0:o.footer}),c&&(0,n.jsx)(s.default,{src:m,alt:"Entur logo",className:"ml-4 mt-4 h-[20px] w-[70px] object-contain md:h-[25px] md:w-[200px]"})]})}},37805:(e,t,i)=>{function n(e){var t=(Date.parse(e)-Date.now())/1e3-15;return t<60?"N\xe5":t<600?Math.floor(t/60)+" min":l(e)}function l(e){var t;return t=Date.parse(e),Intl.DateTimeFormat("no-NB",{hour12:!1,hour:"2-digit",minute:"2-digit",timeZone:"Europe/Oslo"}).format(t)}function a(e){return e.toISOString().replace(/\.\d{3}Z$/,"Z")}function r(e,t){return new Date(e.setMinutes(e.getMinutes()+t))}function s(e){return Intl.DateTimeFormat("no-NB",{month:"short",day:"2-digit",timeZone:"Europe/Oslo"}).format(Date.parse(e))}function o(e){return new Date().setHours(0,0,0,0)===new Date(Date.parse(e)).setHours(0,0,0,0)}i.d(t,{DR:()=>o,WO:()=>r,bU:()=>l,mM:()=>a,pp:()=>s,vq:()=>n})},39054:(e,t,i)=>{i.d(t,{Ym:()=>r,_X:()=>l,i2:()=>a,kA:()=>s}),i(15856),i(18761);var n=i(35805),l=["line","destination","time"],a=["line","destination","name","platform","time"];function r(e){var t=e.get("quay"),i=e.get("stop_place"),a=e.get("stop_place_name").split(","),r=e.get("quay_name"),s=t||i;return{type:s!==i?"quay":"stop_place",name:`${a[0]}${"Vis alle"===r||""===r?"":" "+r.trim()}, ${a[1]}`,uuid:(0,n.Ak)(),placeId:s,columns:l}}function s(e){return e.sort((e,t)=>e.label.localeCompare(t.label,"nb"))}},47941:(e,t,i)=>{i.d(t,{$N:()=>r,FN:()=>s,MD:()=>l,c:()=>o,uD:()=>a});var n=i(56537);function l(e){switch(e){case"small":return"text-em-xs";case"medium":default:return"text-em-base";case"large":return"text-em-xl"}}function a(e){if(!e.tiles||0===e.tiles.length)return"medium";switch(e.tiles.length){case 1:return"large";case 2:return"medium";default:return"small"}}function r(e,t){return t&&e?e.filter(e=>!t.some(t=>e.id===t.id)):null!=e?e:[]}function s(e){var t={};return e.map(e=>{var i=e.id;if(t[i]){var n,l,a=null==(n=t[i].origin)?void 0:n.split(", ").concat([null!=(l=e.origin)?l:""]).sort();t[i].origin=null==a?void 0:a.join(", ")}else t[i]=e}),Object.values(t)}function o(e,t){var i=e&&e.map(e=>{var i;return{situations:r(e.situations,t),publicCode:e.serviceJourney.line.publicCode,transportMode:null!=(i=e.serviceJourney.transportMode)?i:"unknown",cancellation:e.cancellation}}).filter(e=>0!==e.situations.length);return i&&0!==i.length?Array.from(i.flatMap(e=>e.situations.map(t=>({id:t.id,situation:t,cancellation:e.cancellation,publicCode:e.publicCode,transportMode:e.transportMode}))).reduce((e,t)=>{var i=e.get(t.id);return void 0!==i?(t.publicCode&&i.publicCodeSet.add(t.publicCode),i.transportModeSet.add(t.transportMode)):e.set(t.id,{situation:t.situation,cancellation:t.cancellation,publicCodeSet:new Set(t.publicCode?[t.publicCode]:[]),transportModeSet:new Set([t.transportMode])}),e},new Map).values()).map(e=>({situation:e.situation,cancellation:e.cancellation,publicCodeList:Array.from(e.publicCodeSet).sort(n.iR),transportModeList:Array.from(e.transportModeSet)})):[]}},54830:(e,t,i)=>{i.d(t,{G:()=>n});function n(e){return null!=e}},55747:(e,t,i)=>{i.d(t,{b:()=>eo});var n=i(71983),l=i(45849),a=i(91246),r=i(47941),s=i(17389),o=i(85203),u=i.n(o),d=i(38494);function c(e){var t=e.className,i=e.children,r=(0,s._)(e,["className","children"]);return(0,a.jsx)("div",(0,l._)((0,n._)({className:u()("h-content w-full overflow-hidden rounded bg-secondary p-em-1 pt-em-0.25 text-primary",t)},r),{children:i}))}var m=i(39054),p=i(72930),v=i(2538);function f(){return(0,a.jsx)("div",{className:"flex h-full w-full flex-col justify-center",children:(0,a.jsxs)("div",{className:"w-full text-center",children:["Henter avganger...",(0,a.jsx)(v.aH,{})]})})}var h=i(56537),x=i(1914),g=e=>{var t=e.isHighlighted,i=e.deviationType,n="1.3em";if("no-deviation"===i)return null;var l="cancellation"===i?"var(--error-color)":"var(--warning-color)";return void 0===t||t?(0,a.jsx)("div",{className:"relative inline-flex items-center justify-center",style:{width:n,height:n},children:(0,a.jsx)("div",{className:"flex items-center justify-center",children:"cancellation"===i?(0,a.jsxs)("svg",{width:n,height:n,viewBox:"0 0 18 18",xmlns:"http://www.w3.org/2000/svg",children:[(0,a.jsx)("path",{fillRule:"evenodd",clipRule:"evenodd",d:"M9 16C12.866 16 16 12.866 16 9C16 5.13401 12.866 2 9 2C5.13401 2 2 5.13401 2 9C2 12.866 5.13401 16 9 16ZM6.07574 11.0758L8.15148 9.00007L6.07574 6.92433L6.92427 6.07581L9.00001 8.15154L11.0757 6.07581L11.9243 6.92433L9.84854 9.00007L11.9243 11.0758L11.0757 11.9243L9.00001 9.8486L6.92427 11.9243L6.07574 11.0758Z",fill:l}),(0,a.jsx)("path",{d:"M18 9C18 13.9706 13.9706 18 9 18C4.02944 18 0 13.9706 0 9C0 4.02944 4.02944 0 9 0C13.9706 0 18 4.02944 18 9ZM1.44 9C1.44 13.1753 4.82473 16.56 9 16.56C13.1753 16.56 16.56 13.1753 16.56 9C16.56 4.82473 13.1753 1.44 9 1.44C4.82473 1.44 1.44 4.82473 1.44 9Z",fill:l})]}):(0,a.jsxs)("svg",{width:n,height:n,viewBox:"0 0 18 18",fill:"none",xmlns:"http://www.w3.org/2000/svg",children:[(0,a.jsx)("path",{d:"M18 9C18 13.9706 13.9706 18 9 18C4.02944 18 0 13.9706 0 9C0 4.02944 4.02944 0 9 0C13.9706 0 18 4.02944 18 9ZM1.44 9C1.44 13.1753 4.82473 16.56 9 16.56C13.1753 16.56 16.56 13.1753 16.56 9C16.56 4.82473 13.1753 1.44 9 1.44C4.82473 1.44 1.44 4.82473 1.44 9Z",fill:l}),(0,a.jsx)("path",{fillRule:"evenodd",clipRule:"evenodd",d:"M9 2C5.1 2 2 5.1 2 9C2 12.9 5.1 16 9 16C12.9 16 16 12.9 16 9C16 5.1 12.9 2 9 2ZM8.3 5H9.7V10.1H8.3V5ZM9 13.2C8.5 13.2 8.1 12.8 8.1 12.3C8.1 11.8 8.5 11.4 9 11.4C9.5 11.4 9.9 11.8 9.9 12.3C9.9 12.9 9.5 13.2 9 13.2Z",fill:l})]})})}):(0,a.jsx)("div",{className:"flex items-center justify-center",style:{width:n,height:n},children:"cancellation"===i?(0,a.jsx)(x.zTR,{opacity:.5,color:"var(--error-color)",size:"1.17em"}):(0,a.jsx)(x.mlM,{opacity:.5,color:"var(--warning-color)",size:"1.17em"})})};function y(e){var t,i,n,l,r,s,o,u,d,c=e.situation,m=e.cancelledDeparture,p=e.currentSituationNumber,v=e.numberOfSituations,f=e.publicCodeList,x=e.transportModeList;if(!c)return null;var y=(o=null!=(s=null==(t=c)||null==(i=t.summary.find(e=>"no"===e.language))?void 0:i.value)?s:null==t||null==(n=t.summary[0])?void 0:n.value,void 0===(d=null!=(u=null==t||null==(l=t.description.find(e=>"no"===e.language))?void 0:l.value)?u:null==t||null==(r=t.description[0])?void 0:r.value)?o:void 0===o?d:o.length<=25?o+" - "+d:o),b=function(e,t){if(!e||!t)return null;var i=1===e.length?(0,h.nI)(e[0]):"Linje",n=1===t.length?t[0]:t.join(", ");return`${i} ${n}`}(x,f),j=m?"error":"warning";return y&&(0,a.jsxs)("div",{className:"ml-em-0.25 flex w-full shrink-0 flex-row items-center pt-3",children:[(0,a.jsx)("div",{className:`flex shrink-0 items-center justify-center text-${j}`,children:(0,a.jsx)(g,{deviationType:m?"cancellation":"situation"})}),(0,a.jsx)("div",{className:"grow self-center",children:(0,a.jsx)("p",{className:`ml-em-0.75 break-words text-em-sm/em-base ${m?"text-error":"text-warning"}`,children:(0,a.jsxs)(a.Fragment,{children:[b&&(0,a.jsxs)("b",{children:[b,(0,a.jsx)(a.Fragment,{children:": "})]}),y]})})}),(0,a.jsx)("div",{className:`ml-8 shrink-0 justify-center text-center text-em-sm/em-base font-semibold text-${j}`,children:void 0!==p&&void 0!==v&&v>1&&(0,a.jsxs)(a.Fragment,{children:[p+1," /"," ",v]})})]})}var b=i(5500);let j={src:"/_next/static/media/leafs-light.f449c514.png",height:1501,width:1500,blurDataURL:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAMAAADz0U65AAAAG1BMVEVMaXGBfJdbQlydnre7vtCkfILFx9jDw9TO0OGAfuC0AAAACXRSTlMAHhNTRS2Ta78msP6wAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAJElEQVR4nGNgwAYYWcEUCyMTEws7AwMDMyMTAwcbVJKZEYsWAAdFADPMSz+hAAAAAElFTkSuQmCC",blurWidth:8,blurHeight:8};var w=i(48691),C=i(25411),N=i.n(C),T=i(15239),D=i(7383),A=i(35805),M=i(54830),S=i(65060);function k(e){var t=e.className,i=e.children;return(0,a.jsx)("div",{className:`flex h-[2.75em] w-full items-center border-t border-solid border-t-secondary ${t||""}`,children:(0,a.jsx)("div",{className:"mx-em-0.25 w-full",children:i})})}function I(e){var t=e.title,i=e.children,n=e.className;return(0,a.jsxs)("div",{className:`flex flex-col ${n}`,children:[(0,a.jsx)("div",{className:"mx-2 pb-2 text-em-sm/em-base text-primary",children:null!=t?t:(0,a.jsx)("div",{className:"h-[1.1em]"})}),i]})}function $(){var e=(0,D.x)(S.l).map(e=>{var t,i,n,l,a;return{destination:null!=(l=null==(t=e.destinationDisplay)?void 0:t.frontText)?l:"",via:null!=(a=null==(n=e.destinationDisplay)||null==(i=n.via)?void 0:i.filter(M.G).join(", "))?a:"",key:(0,A.Ak)()}});return(0,a.jsx)("div",{className:"grow overflow-hidden",children:(0,a.jsx)(I,{title:"Destinasjon",children:e.map(e=>(0,a.jsx)(k,{className:"flex align-middle",children:(0,a.jsx)("div",{className:"line-clamp-1 overflow-ellipsis hyphens-auto text-em-xl2 leading-em-base",children:e.via?`${e.destination} via ${e.via}`:e.destination})},e.key))})})}function q(){var e=(0,D.x)(S.l);return(0,a.jsx)("div",{className:"grow overflow-hidden",children:(0,a.jsx)(I,{title:"Stoppested",children:e.map(e=>(0,a.jsx)(k,{children:(0,a.jsx)("div",{className:"line-clamp-2 justify-items-end overflow-ellipsis hyphens-auto text-em-base/em-base",children:e.quay.name})},(0,A.Ak)()))})})}function _(e){var t=e.currentVisibleSituationId,i=e.stopPlaceSituations,n=e.numberOfShownSituations,l=(0,D.x)(S.l).map(e=>{var l,a=!n||!(n>0)||e.situations.some(e=>e.id===t),s=null!=(l=(0,r.$N)(e.situations,i))?l:[];return e.cancellation?{type:"cancellation",isHighlighted:a}:s.length>0?{type:"situation",situations:s,isHighlighted:a}:{type:"no-deviation"}});return(0,a.jsx)(I,{children:l.map((e,t)=>(0,a.jsx)(k,{children:(0,a.jsx)(L,{deviation:e})},`${e.type}-${t}`))})}function L(e){var t=e.deviation;return"no-deviation"===t.type?null:(0,a.jsx)("div",{className:"flex items-center justify-center",style:{height:"3em"},children:(0,a.jsx)(g,{deviationType:t.type,isHighlighted:t.isHighlighted})})}var P=i(98996),E=/AVI:ServiceJourney:([A-Z0-9]+)-\d{2}-\d+/;function O(){var e=(0,D.x)(S.l).map(e=>{var t,i,n,l;return{transportMode:null!=(t=e.serviceJourney.transportMode)?t:"unknown",transportSubmode:null!=(i=e.serviceJourney.transportSubmode)?i:void 0,publicCode:null!=(n=e.serviceJourney.line.publicCode)?n:"",key:(0,A.Ak)(),id:null!=(l=e.serviceJourney.id)?l:"",cancelled:e.cancellation}});return(0,a.jsx)(I,{title:"Linje",children:e.map(e=>{var t,i;return(0,a.jsx)(k,{children:(0,a.jsx)("div",{className:"flex w-full items-center justify-start gap-2 pr-2",children:(0,a.jsx)(P.n,{transportMode:e.transportMode,transportSubmode:e.transportSubmode,publicCode:"air"===e.transportMode?null!=(t=(i=e.id.match(E))?i[1]:void 0)?t:"":e.publicCode,cancelled:e.cancelled})})},e.key)})})}function F(){var e=(0,D.x)(S.l).map(e=>({publicCode:e.quay.publicCode,key:(0,A.Ak)()}));return(0,a.jsx)(I,{title:"Plattform",children:e.map(e=>(0,a.jsx)(k,{children:e.publicCode},e.key))})}var Z=i(37805);function U(e){var t=e.time;return(0,a.jsxs)(a.Fragment,{children:[(0,a.jsx)("div",{className:"text-nowrap text-right text-em-xl leading-em-base",children:(0,Z.vq)(t)}),!(0,Z.DR)(t)&&(0,a.jsx)("div",{className:"text-right text-em-sm/em-sm",children:(0,Z.pp)(t)})]})}function H(){var e=(0,D.x)(S.l).map(e=>({aimedDepartureTime:e.aimedDepartureTime,key:(0,A.Ak)()}));return(0,a.jsx)(I,{title:"Planlagt",className:"text-right",children:e.map(e=>(0,a.jsx)(k,{children:(0,a.jsx)(U,{time:e.aimedDepartureTime})},e.key))})}function J(){var e=(0,D.x)(S.l).map(e=>({expectedArrivalTime:e.expectedArrivalTime,key:(0,A.Ak)()}));return(0,a.jsx)(I,{title:"Ankomst",className:"text-right",children:e.map(e=>(0,a.jsx)(k,{children:(0,a.jsx)(U,{time:e.expectedArrivalTime})},e.key))})}function B(){var e=(0,D.x)(S.l).map(e=>({aimedDepartureTime:e.aimedDepartureTime,expectedDepartureTime:e.expectedDepartureTime,cancelled:e.cancellation,key:(0,A.Ak)()}));return(0,a.jsx)(I,{title:"Forventet",className:"text-right",children:e.map(e=>(0,a.jsx)(k,{children:(0,a.jsx)(R,{expectedDepartureTime:e.expectedDepartureTime,aimedDepartureTime:e.aimedDepartureTime,cancelled:e.cancelled})},e.key))})}function R(e){var t=e.expectedDepartureTime,i=e.aimedDepartureTime;return e.cancelled?(0,a.jsxs)(a.Fragment,{children:[(0,a.jsx)("div",{className:"text-right text-em-lg/em-lg font-semibold text-estimated-time",children:"Innstilt"}),(0,a.jsx)("div",{className:"lineThrough text-right text-em-sm/em-sm",children:(0,Z.bU)(i)})]}):Math.abs((Date.parse(i)-Date.parse(t))/1e3)>120?(0,a.jsxs)(a.Fragment,{children:[(0,a.jsx)("div",{className:"text-right text-em-xl leading-em-base text-estimated-time",children:(0,Z.vq)(t)}),(0,a.jsx)("div",{className:"lineThrough text-right text-em-sm/em-xs",children:(0,Z.bU)(i)})]}):(0,a.jsx)(U,{time:t})}function V(e){var t,i=e.departures,n=e.columns,l=e.stopPlaceSituations,r=e.currentVisibleSituationId,s=e.numberOfVisibleSituations,o=null==(t=document.querySelector("[data-theme]"))?void 0:t.getAttribute("data-theme");return n&&N()(n)?0===i.length?(0,a.jsxs)("div",{className:"flex h-full w-full flex-col items-center justify-center pb-4 text-center text-em-sm",children:[(0,a.jsx)(T.default,{src:"light"===o?j:w.default,alt:"",className:"h-[6em] w-[6em] sm:max-h-[10em] sm:max-w-[10em] lg:h-[15em] lg:w-[15em]"}),(0,a.jsx)(b.fz,{className:"!text-primary sm:pb-8",children:"Ingen avganger de neste 24 timene."})]}):(0,a.jsx)("div",{className:"flex flex-col",children:(0,a.jsx)("div",{className:"flex shrink-0",children:(0,a.jsxs)(S.l.Provider,{value:i,children:[(0,a.jsx)(_,{currentVisibleSituationId:r,stopPlaceSituations:l,numberOfShownSituations:s}),n.includes("aimedTime")&&(0,a.jsx)(H,{}),n.includes("arrivalTime")&&(0,a.jsx)(J,{}),n.includes("line")&&(0,a.jsx)(O,{}),n.includes("destination")&&(0,a.jsx)($,{}),n.includes("name")&&(0,a.jsx)(q,{}),n.includes("platform")&&(0,a.jsx)(F,{}),n.includes("time")&&(0,a.jsx)(B,{})]})})}):(0,a.jsx)("div",{className:"flex shrink-0",children:"Du har ikke lagt til noen kolonner enn\xe5"})}var G=i(22043);function z(e){var t,i=arguments.length>1&&void 0!==arguments[1]?arguments[1]:5e3,n=(0,G._)((0,d.useState)(0),2),l=n[0],a=n[1],r=null!=(t=null==e?void 0:e.length)?t:0;return(0,d.useEffect)(()=>{if(!(r<=1)){var e=setInterval(()=>{a(e=>(e+1)%r)},i);return()=>clearInterval(e)}},[r,i]),(0,d.useEffect)(()=>{if(0===r){0!==l&&a(0);return}l>=r&&a(0)},[r,l]),l}function Q(e){var t,i,n,l,r,s,o,u,d=e.situation,c=null!=(u=null!=(o=null!=(s=null!=(r=null==d||null==(t=d.summary.find(e=>"no"===e.language))?void 0:t.value)?r:null==d||null==(i=d.summary[0])?void 0:i.value)?s:null==d||null==(n=d.description.find(e=>"no"===e.language))?void 0:n.value)?o:null==d||null==(l=d.description[0])?void 0:l.value)?u:null,m=null==d?void 0:d.origin;return c?(0,a.jsxs)("div",{className:"mt-[0.1em] flex min-h-max items-center gap-[8px] text-em-situation/em-situation text-warning",children:[(0,a.jsx)("div",{className:"flex self-start pt-[0.05em] text-[1.8em]",children:(0,a.jsx)(x.bzS,{"aria-label":"",size:"0.5em"})}),(0,a.jsxs)("p",{className:"font-normal",children:[m&&(0,a.jsx)("b",{children:m+": "}),c]})]}):null}function W(e){var t,i=e.situations,n=z(i,1e4),l=null!=(t=null==i?void 0:i.length)?t:0;return i&&0!==l?(0,a.jsx)("div",{className:"mt-[-1em] min-h-[1.5em]",children:i&&l>0&&(0,a.jsx)(Q,{situation:i[n%l]})}):null}function Y(e){var t,i=e.situations,n=z(i,1e4),l=null!=(t=null==i?void 0:i.length)?t:0;return(0,a.jsx)("div",{className:"mt-[0.5em] min-h-[1.5em] pb-[1em]",children:i&&l>0&&(0,a.jsx)(Q,{situation:i[n%l]})})}var X=i(91427);function K(e){var t=e.walkingDistance;return t&&!1!=t.visible?(0,a.jsxs)("div",{className:"flex flex-row items-center whitespace-nowrap",children:[(0,a.jsx)(x.F_s,{color:"primary"}),(0,X.K)(t.distance)]}):null}function ee(e){var t=e.heading,i=e.walkingDistance;return(0,a.jsxs)("div",{className:"mb-2 flex min-h-[2.5em] flex-row items-center justify-between",children:[(0,a.jsx)("h1",{className:"m-0 line-clamp-2 hyphens-auto text-em-xl2 font-semibold leading-em-base",children:t}),(0,a.jsx)(K,{walkingDistance:i})]})}function et(e){var t,i,n,l,r,s,o=e.displayName,u=e.estimatedCalls,d=e.situations,m=e.uniqueSituations,v=e.currentSituationIndex,h=e.isLoading,x=e.error,g=e.hasData,b=e.columns,j=e.walkingDistance,w=e.customHeader,C=e.customDeviation,N=e.className;return h&&!g?(0,a.jsx)(c,{className:N,children:(0,a.jsx)(f,{})}):x||!g?(0,a.jsx)(c,{className:N,children:(0,a.jsx)(p.Q,{timeout:(null==x?void 0:x.message)===p.I.TIMEOUT})}):u&&0!==u.length?(0,a.jsxs)(c,{className:`flex flex-col ${N||""}`,children:[(0,a.jsxs)("div",{className:"flex-grow overflow-hidden",children:[null!=w?w:o&&(0,a.jsx)(ee,{heading:o,walkingDistance:j}),null!=C?C:(0,a.jsx)(W,{situations:d}),(0,a.jsx)(V,{columns:b,departures:u,stopPlaceSituations:d,currentVisibleSituationId:null==m||null==(t=m[v])?void 0:t.situation.id,numberOfVisibleSituations:null==m?void 0:m.length})]}),m&&m.length>0&&(0,a.jsx)(y,{situation:null==(i=m[v])?void 0:i.situation,currentSituationNumber:v,numberOfSituations:m.length,cancelledDeparture:null!=(s=null==(n=m[v])?void 0:n.cancellation)&&s,transportModeList:null==(l=m[v])?void 0:l.transportModeList,publicCodeList:null==(r=m[v])?void 0:r.publicCodeList})]}):(0,a.jsxs)(c,{className:`flex flex-col ${N||""}`,children:[(0,a.jsx)("div",{className:"flex-grow overflow-hidden",children:null!=w?w:o&&(0,a.jsx)(ee,{heading:o,walkingDistance:j})}),(0,a.jsx)("div",{className:"flex h-full w-full items-center justify-center text-center text-tertiary",children:"Ingen avganger i n\xe6rmeste fremtid"})]})}var ei=i(15856),en=i(65406);function el(e){var t,i,s,o,u,d,c,p,v,f,h,x,g,y,b,j,w,C,N,T=e.combinedTile,D=e.className,A=(u=T.filter(e=>"quay"===e.type).map(e=>({query:ei.Zs,variables:{quayId:e.placeId,whitelistedTransportModes:e.whitelistedTransportModes,whitelistedLines:e.whitelistedLines},options:{offset:e.offset,poll:!0}})),d=T.filter(e=>"stop_place"===e.type).map(e=>({query:ei.Gu,variables:{stopPlaceId:e.placeId,whitelistedTransportModes:e.whitelistedTransportModes,whitelistedLines:e.whitelistedLines},options:{offset:e.offset,poll:!0}})),p=(c=(0,en.E)(u)).data,v=c.error,f=c.isLoading,x=(h=(0,en.E)(d)).data,g=h.error,y=h.isLoading,b=[...null!=(t=null==x?void 0:x.flatMap(e=>{var t,i;return null!=(i=null==(t=e.stopPlace)?void 0:t.estimatedCalls)?i:[]}))?t:[],...null!=(i=null==p?void 0:p.flatMap(e=>{var t,i;return null!=(i=null==(t=e.quay)?void 0:t.estimatedCalls)?i:[]}))?i:[]].sort((e,t)=>{var i=new Date(e.expectedDepartureTime).getTime(),n=new Date(t.expectedDepartureTime).getTime();return(isNaN(i)?1/0:i)-(isNaN(n)?1/0:n)}),j=[...null!=(s=null==x?void 0:x.flatMap(e=>{var t,i,l,a,r=null!=(l=null==e||null==(t=e.stopPlace)?void 0:t.name)?l:"";return(null!=(a=null==e||null==(i=e.stopPlace)?void 0:i.situations)?a:[]).map(e=>(0,n._)({origin:r},e))}))?s:[],...null!=(o=null==p?void 0:p.flatMap(e=>{var t,i,l,a,r,s=null!=(a=null==(t=e.quay)?void 0:t.name)?a:"";return(null!=(r=null==e||null==(l=e.quay)||null==(i=l.stopPlace)?void 0:i.situations)?r:[]).map(e=>(0,n._)({origin:s},e))}))?o:[]],w=(0,r.FN)(j),N=z(null!=(C=(0,r.c)(b,w))?C:[],1e4),{displayName:void 0,estimatedCalls:b,situations:w,uniqueSituations:null!=C?C:[],currentSituationIndex:N,isLoading:f||y,error:v||g,hasData:!!((null==p?void 0:p.length)||(null==x?void 0:x.length))});return(0,a.jsx)(et,(0,l._)((0,n._)({},A),{columns:m.i2,customDeviation:(0,a.jsx)(Y,{situations:A.situations}),className:D}))}function ea(e){var t,i,s,o,u,d,c,p,v,f,h,x,g,y,b,j,w,C,N,T,D,A,S,k=(f=e.placeId,h=e.whitelistedLines,x=e.whitelistedTransportModes,g=e.offset,y=e.displayName,j=(b=(0,en.I)(ei.Zs,{quayId:f,whitelistedLines:h,whitelistedTransportModes:x},{poll:!0,offset:null!=g?g:0})).data,w=b.isLoading,C=b.error,N=(0,r.FN)([...null!=(c=null==j||null==(t=j.quay)?void 0:t.stopPlace.situations)?c:[],...null!=(p=null==j||null==(i=j.quay)?void 0:i.situations)?p:[]]),D=z(null!=(T=(0,r.c)(null==j||null==(s=j.quay)?void 0:s.estimatedCalls,N))?T:[],1e4),A=[null==j||null==(o=j.quay)?void 0:o.name,null==j||null==(u=j.quay)?void 0:u.publicCode].filter(M.G).join(" "),{displayName:null!=y?y:A,estimatedCalls:null!=(v=null==j||null==(d=j.quay)?void 0:d.estimatedCalls)?v:[],situations:N,uniqueSituations:null!=T?T:[],currentSituationIndex:D,isLoading:w,error:C,hasData:!!(null==j?void 0:j.quay)});return(0,a.jsx)(et,(0,l._)((0,n._)({},k),{columns:null!=(S=e.columns)?S:m._X,walkingDistance:e.walkingDistance,className:e.className}))}function er(e){var t,i,s,o,u,d,c,p,v,f,h,x,g,y,b,j,w,C,N,T,D=(v=e.placeId,f=e.whitelistedLines,h=e.whitelistedTransportModes,x=e.offset,g=e.displayName,b=(y=(0,en.I)(ei.Gu,{stopPlaceId:v,whitelistedTransportModes:h,whitelistedLines:f},{poll:!0,offset:null!=x?x:0})).data,j=y.isLoading,w=y.error,N=z(null!=(C=(0,r.c)(null==b||null==(t=b.stopPlace)?void 0:t.estimatedCalls,null==b||null==(i=b.stopPlace)?void 0:i.situations))?C:[],1e4),{displayName:null!=(d=null!=g?g:null==b||null==(s=b.stopPlace)?void 0:s.name)?d:"",estimatedCalls:null!=(c=null==b||null==(o=b.stopPlace)?void 0:o.estimatedCalls)?c:[],situations:null!=(p=null==b||null==(u=b.stopPlace)?void 0:u.situations)?p:[],uniqueSituations:null!=C?C:[],currentSituationIndex:N,isLoading:j,error:w,hasData:!!(null==b?void 0:b.stopPlace)});return(0,a.jsx)(et,(0,l._)((0,n._)({className:e.className},D),{columns:null!=(T=e.columns)?T:m._X,walkingDistance:e.walkingDistance}))}function es(e){var t=e.tileSpec,i=e.className;switch(t.type){case"stop_place":return(0,a.jsx)(er,(0,l._)((0,n._)({},t),{className:i}));case"quay":return(0,a.jsx)(ea,(0,l._)((0,n._)({},t),{className:i}))}}function eo(e){var t,i,n,l,s,o,u,d,m,p=e.board;if(!p.tiles||!p.tiles.length)return(0,a.jsx)(c,{className:"flex h-full items-center justify-center",children:(0,a.jsx)("p",{children:"Du har ikke lagt til noen stoppesteder enn\xe5."})});var v=(null==(l=null!=(n=null==(i=(t=p).combinedTiles)?void 0:i.map(e=>e.ids))?n:[])?void 0:l.map(e=>t.tiles.filter(t=>e.includes(t.uuid))))||[],f=(d=null!=(u=null==(o=(s=p).combinedTiles)?void 0:o.map(e=>e.ids))?u:[],s.tiles.filter(e=>!(null==d?void 0:d.flat().includes(e.uuid)))),h=f.length+v.length,x=(0,r.MD)((null==(m=p.meta)?void 0:m.fontSize)||(0,r.uD)(p)),g={"--cols":String(h)},y=`grid h-full gap-2.5 overflow-hidden supports-[not(display:grid)]:flex supports-[not(display:grid)]:*:m-2.5 max-sm:overflow-y-scroll xs:grid-cols-1 sm:grid-cols-[repeat(auto-fit,_minmax(33%,_1fr))] 3xl:[grid-template-columns:repeat(var(--cols),minmax(0,1fr))] ${x}`,b=h%2==1;return(0,a.jsxs)("div",{"data-transport-palette":p.transportPalette,"data-theme":p.theme,style:g,className:y,children:[f.map((e,t)=>(0,a.jsx)(es,{tileSpec:e,className:(e=>{if(b&&0===e)return"sm:max-3xl:row-span-2"})(t)},t)),v.map((e,t)=>(0,a.jsx)(el,{combinedTile:e},t))]})}},56537:(e,t,i)=>{function n(e,t){if(!e||!e.publicCode||!t||!t.publicCode)return 1;var i=/[a-zæøåA-ZÆØÅ]/,n=i.test(e.publicCode),l=i.test(t.publicCode);return n&&!l?1:!n&&l?-1:e.publicCode.localeCompare(t.publicCode,"no-NB",{numeric:!0})}function l(e,t){if(!e||!t)return 1;var i=/[a-zæøåA-ZÆØÅ]/,n=i.test(e),l=i.test(t);return n&&!l?1:!n&&l?-1:e.localeCompare(t,"no-NB",{numeric:!0})}function a(e){switch(e){case"air":return"Fly";case"bus":return"Buss";case"cableway":return"Kabelbane";case"water":return"B\xe5t";case"funicular":return"Taubane";case"lift":return"Heis";case"rail":return"Tog";case"metro":return"T-bane";case"tram":return"Trikk";case"trolleybus":return"Trolley-buss";case"monorail":return"Enskinnebane";case"coach":return"Langdistansebuss";case"taxi":return"Taxi";case"unknown":return"Ukjent";default:return null}}i.d(t,{iR:()=>l,kO:()=>n,nI:()=>a})},65060:(e,t,i)=>{i.d(t,{_:()=>a,l:()=>l});var n=i(38494),l=n.createContext(void 0),a=n.createContext(void 0)},65406:(e,t,i)=>{i.d(t,{E:()=>s,I:()=>r});var n=i(71983),l=i(18761),a=i(1026);function r(e,t,i){var r,s=(0,n._)({poll:!1,endpoint:"journey-planner"},i),o=(0,a.Ay)([e,t,s.endpoint,null!=(r=s.offset)?r:0],l.G,{revalidateOnFocus:!0,revalidateOnReconnect:!0,refreshInterval:s.poll?3e4:void 0,keepPreviousData:!0}),u=o.data;return{data:u,error:o.error,isLoading:o.isLoading}}function s(e){var t=(0,a.Ay)(e,e=>Promise.all(e.map(e=>{var t,i;return(0,l.G)([e.query,e.variables,"journey-planner",null!=(i=null==(t=e.options)?void 0:t.offset)?i:0])})),{revalidateOnFocus:!0,revalidateOnReconnect:!0,refreshInterval:3e4}),i=t.data;return{data:i,error:t.error,isLoading:t.isLoading}}},72930:(e,t,i)=>{i.d(t,{I:()=>s,Q:()=>o});var n=i(91246),l=i(5500),a=i(48691),r=i(15239),s=function(e){return e.TIMEOUT="Request timed out",e}({});function o(e){var t=e.timeout;return(0,n.jsxs)("div",{className:"flex h-full w-full flex-col items-center justify-center",children:[(0,n.jsx)(r.default,{src:a.default,alt:"Illustrasjon av blader"}),(0,n.jsxs)("div",{className:"w-full text-center",children:[(0,n.jsx)(l._B,{className:"!text-primary",children:void 0!==t&&t?"Innlasting av avganger tok for lang tid!":"Au da! Vi greide ikke \xe5 hente avgangene!"}),(0,n.jsx)(l.fz,{className:"!text-primary",children:"Pr\xf8v \xe5 laste inn siden p\xe5 nytt. Hvis dette ikke hjelper, kontakt oss p\xe5 tavla@entur.org"})]})]})}},73020:(e,t,i)=>{i.d(t,{A:()=>n});let n={src:"/_next/static/media/Tavla-blue.5a3857cb.svg",height:20,width:117,blurWidth:0,blurHeight:0}},80291:(e,t,i)=>{i.d(t,{Jb:()=>n,V6:()=>a,eU:()=>r,vj:()=>l});var n={"journey-planner":"https://api.entur.io/journey-planner/v3/graphql",mobility:"https://api.entur.io/mobility/v2/graphql",vehicles:"https://api.entur.io/realtime/v1/vehicles/graphql"},l="https://ws.geonorge.no/kommuneinfo/v1/fylker",a="https://api.entur.io/geocoder/v1",r="entur-tavla"}}]);
